@@ -3,7 +3,7 @@ TopOfStack = -1
 
 def Push(Item):
     global TopOfStack
-    if TopOfStack == len(Stack) - 1:
+    if TopOfStack==len(Stack) - 1:
         print("Stack is full")
         return False
     TopOfStack += 1
@@ -12,15 +12,15 @@ def Push(Item):
 
 def Pop():
     global TopOfStack
-    if TopOfStack == -1:
+    if TopOfStack==-1:
         print("Stack is empty")
         return -1
     item = Stack[TopOfStack]
-    TopOfStack -= 1
+    TopOfStack-=1
     return item
 
 def ShowStack():
-    if TopOfStack == -1:
+    if TopOfStack==-1:
         return ""
     items = []
     for i in range(TopOfStack, -1, -1):
@@ -29,14 +29,14 @@ def ShowStack():
 
 def DecimalToBinary(Number):
     global TopOfStack
-    TopOfStack = -1
-    if Number == 0:
+    TopOfStack=-1
+    if Number==0:
         return "0"
     while Number > 0:
         Push(Number % 2)
-        Number //= 2
-    result = ""
-    while TopOfStack != -1:
+        Number//=2
+    result=""
+    while TopOfStack !=-1:
         result += str(Pop())
     return result
 
