@@ -1,35 +1,54 @@
-# You can remove 'pass' if you written code in the function
-# Do NOT use .append() or .pop() inside Push() and Pop() - move TopOfStack yourself.
-
-# Exercise 1
-Stack = []
+Stack = [-1] * 8
 TopOfStack = -1
-# Write code here to fill Stack with 8 elements, all -1
-
 
 def Push(Item):
-    # Write your code here
-    pass
-
+    global TopOfStack
+    if TopOfStack == len(Stack) - 1:
+        print("Stack is full")
+        return False
+    TopOfStack += 1
+    Stack[TopOfStack] = Item
+    return True
 
 def Pop():
-    # Write your code here
-    pass
+    global TopOfStack
+    if TopOfStack == -1:
+        print("Stack is empty")
+        return -1
+    item = Stack[TopOfStack]
+    TopOfStack -= 1
+    return item
 
-
-# Exercise 2
 def ShowStack():
-    # Write your code here
-    pass
+    if TopOfStack == -1:
+        return ""
+    items = []
+    for i in range(TopOfStack, -1, -1):
+        items.append(str(Stack[i]))
+    return " ".join(items)
 
-
-# Exercise 3
 def DecimalToBinary(Number):
-    # Write your code here
-    pass
+    global TopOfStack
+    TopOfStack = -1
+    if Number == 0:
+        return "0"
+    while Number > 0:
+        Push(Number % 2)
+        Number //= 2
+    result = ""
+    while TopOfStack != -1:
+        result += str(Pop())
+    return result
 
-
-# Exercise 4
 def Editor(Commands):
-    # Write your code here
-    pass
+    global TopOfStack
+    TopOfStack = -1
+    for cmd in Commands:
+        if cmd.startswith("type "):
+            Push(cmd[5:])
+        elif cmd == "undo":
+            Pop()
+    result = ""
+    for i in range(TopOfStack + 1):
+        result += str(Stack[i])
+    return result
